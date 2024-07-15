@@ -1,10 +1,8 @@
 const {
   collection,
   getDocs,
-  getDoc,
   getFirestore,
   deleteDoc,
-  doc,
   where,
   query,
   updateDoc,
@@ -103,6 +101,7 @@ const AddProduct = async (data, images, collectionName, res) => {
 const DeleteProduct = async (id_product, product_file_name, collectionName) => {
   try {
     const imgRef = ref(storage, `product/${product_file_name}`);
+
     await deleteObject(imgRef);
 
     const q = query(
@@ -122,12 +121,7 @@ const DeleteProduct = async (id_product, product_file_name, collectionName) => {
   }
 };
 
-const UpdateProduct = async (
-  updatedData,
-  updatedImages,
-  collectionName,
-  res
-) => {
+const UpdateProduct = async (updatedData, updatedImages, collectionName) => {
   try {
     const dataToUpdate = {
       product_category: updatedData.product_category,

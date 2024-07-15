@@ -136,14 +136,13 @@ app.patch(
   "/api/update-product",
   verifyToken,
   upload.single("product_img_updated"),
-  (req, res) => {
+  async (req, res) => {
     const updatedImages = req.file;
 
-    const statusUpdateProduct = UpdateProduct(
+    const statusUpdateProduct = await UpdateProduct(
       req.body,
       updatedImages,
-      "product",
-      res
+      "product"
     );
 
     statusUpdateProduct[0]
